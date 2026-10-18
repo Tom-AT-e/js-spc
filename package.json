@@ -1,0 +1,19 @@
+{
+  "name": "js-spc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Same-origin passkey and Secure Payment Confirmation proof of concept",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "setup:https": "node scripts/setup-https.js",
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test",
+    "check": "node --check server/index.js && node --check server/app.js && node --check server/webauthn.js && node --check scripts/setup-https.js && node --check public/app.js"
+  },
+  "dependencies": {
+    "@simplewebauthn/server": "^13.3.2",
+    "express": "^5.1.0"
+  }
+}

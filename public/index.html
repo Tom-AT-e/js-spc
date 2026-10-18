@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A local proof of concept for passkeys and Secure Payment Confirmation.">
+  <title>SPC Playground</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <span class="eyebrow">PASSKEYS / SECURE PAYMENT CONFIRMATION</span>
+      <h1>One passkey.<br>Three ceremonies.</h1>
+      <p class="intro">Register your device, sign in, then approve a transaction in your browser’s secure confirmation dialog.</p>
+      <p id="support" role="status">Checking this device for SPC support…</p>
+    </header>
+
+    <section class="card" aria-labelledby="account-heading">
+      <div class="section-title"><span class="number">01 / 02</span><h2 id="account-heading">Your demo customer</h2></div>
+      <form id="account-form">
+        <label for="customer-id">Customer ID</label>
+        <input id="customer-id" name="customerID" autocomplete="username webauthn" placeholder="e.g. alex" required maxlength="40" pattern="[a-zA-Z0-9_-]{1,40}" aria-describedby="account-help">
+        <p id="account-help" class="hint">Choose a new ID to register. Use that same ID to log in.</p>
+        <div class="actions">
+          <button id="register" type="button" disabled>Register passkey</button>
+          <button id="login" type="submit" class="secondary" disabled>Log in with passkey</button>
+        </div>
+      </form>
+      <div id="session" hidden>
+        <p>Signed in as <strong id="signed-in-as"></strong></p>
+        <button id="logout" class="secondary">Log out</button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="transaction-heading">
+      <div class="section-title"><span class="number">03</span><h2 id="transaction-heading">Approve a transaction</h2></div>
+      <p id="transaction-help" class="hint">Log in to create a demo transaction.</p>
+      <button id="create-transaction" class="secondary" disabled>Create demo transaction</button>
+      <div id="transaction" hidden>
+        <div class="transaction-top"><span id="payee"></span><span id="transaction-status" class="badge"></span></div>
+        <p id="amount" class="amount"></p>
+        <p id="transaction-id" class="hint mono"></p>
+        <button id="approve" disabled>Approve with SPC</button>
+        <p class="hint">Check the payee and amount in Chrome’s confirmation dialog before using Touch ID.</p>
+      </div>
+    </section>
+
+    <div id="message" role="status" aria-live="polite" tabindex="-1">Ready when you are.</div>
+    <footer>Local proof of concept · No money moves · Server restart clears all demo data</footer>
+  </main>
+</body>
+</html>
